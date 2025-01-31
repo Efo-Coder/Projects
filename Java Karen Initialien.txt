@@ -1,0 +1,79 @@
+public class KarelProgram extends Karel
+{
+    public void run()
+    {
+        
+        
+        turnLeft();
+        go(3);
+        turnRight();
+        go(4);
+        turnAround();
+        goprint(4)
+        turnRight();
+        goprint(4);
+        turnRight();
+        goprint(3);
+        turnRight();
+        go(2);
+        turnRight();
+        goprint(2);
+        turnAround();
+        go(5);
+        turnRight();
+        go(3);
+        turnAround();
+        goprint(5);
+        turnRight();
+        go(3);
+        turnLeft();
+        move();
+        turnAround();
+        goprint(5);
+        turnAround();
+        go(2);
+        turnLeft();
+        goprint(2);
+        
+        
+
+    }
+    
+    private void turnRight()
+    {
+        turnLeft();
+        turnLeft();
+        turnLeft();
+    }
+    
+    private void turnAround()
+    {
+        turnLeft();
+        turnLeft();
+    }
+    
+    void go (count)
+    {
+        for (int i=0; i < count; i++)
+        {
+          move();
+        }
+    }
+    
+    void goprint (count)
+    {
+        for (int i=0; i < count; i++)
+        {
+          
+          move();
+          if (noBallsPresent())
+          {
+              putBall();
+          }
+          else
+          {
+              putBall();
+          }
+        }
+    }
+}
