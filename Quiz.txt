@@ -1,0 +1,112 @@
+"""
+Intro
+"""
+print("Wilkommen bei meinem Quiz zu dem Thema Hauptstädte.\nNenne jeweils das zugehörige Land zu der gegebenen Hauptstadt.\n")
+
+"""
+Variablen
+"""
+#Anzahl der richtigen Antworten
+punkte = 0
+
+#Versuche
+attempts = 3
+
+#Maximale Anzahl an Versuchen
+MAXATTEMPTS = attempts
+
+#Fragekatalog
+fragesammlung = [
+    {
+    "frage": "Rom",
+    "richtige_antwort": "Italien"
+    },
+    {
+    "frage": "Warschau",
+    "richtige_antwort": "Polen"
+    },
+    {
+    "frage": "Ankara",
+    "richtige_antwort": "Türkei"
+    },
+    {
+    "frage": "Kabul",
+    "richtige_antwort": "Afghanistan"
+    },
+    {
+    "frage": "Lusaka",
+    "richtige_antwort": "Sambia"
+    }
+]
+
+#Gesamtanzahl der Fragen
+anzahl_fragen = len(fragesammlung)
+
+#Indikator, um die Position in der Liste zu ermitteln
+#1 = Rom
+#2 = Warschau
+#3 = ...
+aktuelle_frage_indicator = 0
+
+"""
+Funktion
+"""
+#Funktion zur Fragestellung und Überprüfung der Antwort
+def stelle_frage(frage):
+        print(frage["frage"])
+        antwort = input().capitalize()
+        
+        #Wenn Antwort Richtig:
+        if antwort == frage["richtige_antwort"]:
+            print("Richtig!\n")
+            global punkte
+            punkte += 1
+            
+            #Indikator wird um 1 erhöht, um zur nächsten Frage zu springen
+            global aktuelle_frage_indicator
+            aktuelle_frage_indicator += 1
+        #Wenn Antwort Falsch:
+        else:
+            global attempts
+            attempts -= 1
+            if attempts > 0:
+                print("Falsch! Du hast noch", attempts ,"Versuch übrig.\n")
+            else:
+                print("Falsch! Die richtige Antwort wäre", frage["richtige_antwort"], " gewesen.\n")
+
+"""
+Schleife
+"""
+# Wiederholt die Schleife solange,
+# bis keine Versuche mehr übrig sind oder 
+# alle Fragen mindestens einmal gestellt wurden
+while attempts > 0 and aktuelle_frage_indicator != anzahl_fragen:
+    stelle_frage(fragesammlung[aktuelle_frage_indicator])
+
+"""
+Endergebnis
+"""
+# Überprüft die Anzahl der richtigen Antworten und der gemachten Fehler
+# und gibt dementsprechend das Ergebnis aus
+
+#Wenn keine Versuche mehr übrig, dann...
+if attempts <= 0:
+    print("Du hast die Anzahl der Versuche erreicht.")
+#Wenn mehr als 0 Versuche übrig, dann...
+else:
+    #Aus rein grammatikalischen Gründen
+    #Wenn nur ein Fehler
+    fehler = MAXATTEMPTS - attempts
+    if fehler == 1:
+        print("Super. Du hast es mit nur", fehler, "Fehler geschafft.")
+    #Wenn keine Fehler
+    elif fehler == 0:
+        print("Wir sind Klasse. Große Klasse. Erste Klasse. Schokolade.")
+    #Wenn mehr als 1 Fehler
+    else:
+        print("Super. Du hast es mit nur", fehler, "Fehlern geschafft.")
+
+if punkte == 0:
+    print("Du hast keine Frage richtig beantwortet.")
+else:
+    print("Du hast " + str(punkte) + " von ", str(len(fragesammlung)), " Fragen richtig beantwortet.")
