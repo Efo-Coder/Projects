@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efrahim Haser</title>
+</head>
+<body>
+    <header>
+        <h1>Efrahim Haser</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">Über mich</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h2><font color=#575656>Über mich</font></h2>
+        <p>Ich bin 31 Jahre alt und strebe die Weiterbildung als Backend-Entwickler an.
+            <br />Ich habe bereits fortgeschrittene Erfahrung in der Programmiersprache C#.
+        </p>
+        <h4>Hobbies</h4>
+        <ul>
+            <li>Fitness</li>
+            <li>Boxxen</li>
+            <li>Zocken</li>
+            <li>Handwerk</li>
+        </ul>
+    </section>
+
+    <section id="portfolio">
+        <h2><font color=#575656>Portfolio</font></h2>
+        <img src="C:\Users\Teilnehmer.LAPTOP-1O8GG4HI\Desktop\Neustarter - Grundkurs\Track Coding - Aufgabe 05 - Website\Portfolio Icon.jpg"
+        style="width: 100px; height: 100px;">
+        <div>
+            Ich habe ein Quiz entwickelt, bei dem man insgesamt 3 Versuche hat.
+            <br />Bei falscher Antwort, wird die Frage solange wiederholt, bis man sie entweder
+            richtig beantwortet hat oder die Versuche ausgehen. Ist das Quiz erfolgreich beendet
+            oder <br />sind keine Versuche mehr übrig, wird je nach Fall das entsprechende Endergebnis
+            gezeigt. Außerdem wird zusätzlich noch die Anzahl der Fehler und der richtigen Antworten
+            wiedergegeben.<br /><br />
+        </div>
+        <a href="https://www.programiz.com/online-compiler/4uyPockE0HEUU">Hier klicken, um das Quiz zu öffnen</a>
+    </section>
+
+    <section id="goals">
+        <h2><font color=#575656>Meine Ziele</font></h2>
+        <p>
+            Die Weiterbildung erfolgreich abschließen, ein Haus bauen, etwas innovatives erfinden.
+        </p>
+    </section>
+
+    <section id="contact">
+        <h2><font color=#575656>Kontakt</font></h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="message">Nachricht:</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br><br>
+            <button type="submit">Senden</button>
+        </form>
+    </section>
+
+    
+
+    <footer>
+        <p>&copy; 2024 Mein Portfolio. Alle Rechte vorbehalten.</p>
+    </footer>
+</body>
+</html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Verhindert das Standard-Verhalten des Formulars (Seitenneuladen)
+
+            // Erfasse die Formulardaten
+            const formData = new FormData(form);
+            const formDataObject = {};
+            formData.forEach(function(value, key) {
+                formDataObject[key] = value;
+            });
+
+            // Sende die Daten an eine Backend-URL (fiktives Beispiel)
+            const backendURL = "pana.christ@neustarter.de";
+            fetch(backendURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formDataObject)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                alert("Die Nachricht wurde erfolgreich gesendet!");
+                form.reset(); // Formular zurücksetzen
+            })
+            .catch(error => {
+                console.error("There was an error sending the message:", error);
+                alert("Es gab ein Problem beim Senden der Nachricht. Bitte versuche es später erneut.");
+            });
+        });
+    });
+</script>
