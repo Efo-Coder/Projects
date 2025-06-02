@@ -1,0 +1,37 @@
+from IPython.display import display, clear_output
+import time
+
+def telefonbuch():
+    telefonbuch = {}
+    color_codes = ["\033[31m", "\033[32m", "\033[34m"]
+    while True:
+        print("Befehle: (\033[31m1\033[0m \033[30msuchen\033[0m, \033[32m2\033[0m \033[30mhinzufuegen\033[0m, \033[34m3\033[0m \033[30mbeenden\033[0m)")
+        befehl = input()
+
+        clear_output(wait=False) # Bisherige Ausgabe wird gelöscht
+        time.sleep(0)            # Sleep Timer braucht man. Sonst buggt die clear_output-Funktion
+
+        print("Befehle: (\033[31m1\033[0m \033[30msuchen\033[0m, \033[32m2\033[0m \033[30mhinzufuegen\033[0m, \033[34m3\033[0m \033[30mbeenden\033[0m)")
+        for i in range(0,3):
+            if befehl == str(i):
+                print(f"{color_codes[i-1]}{befehl}\033[0m")
+
+        if befehl == "1":
+            name = input("Name: ")
+            if name in telefonbuch:
+                print(f"Nummer: {telefonbuch[name]}")
+            else:
+                print(f"\033[31mKeine Nummer unter '{name.capitalize()}' gespeichert.\033[0m")
+        elif befehl == "2":
+            name = input("Name: ")
+            nummer = input("Nummer: ")
+            telefonbuch[name] = nummer
+            print(f"\033[32m{name.capitalize()} wurde hinzugefügt!\033[0m")
+        elif befehl == "3":
+            print("\033[34m3\033[0m")
+            print("Programm wurde beendet.")
+            break
+        else:
+            print("Ungültiger Befehl.")
+
+telefonbuch()
